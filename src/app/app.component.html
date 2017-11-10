@@ -1,0 +1,18 @@
+
+<div class="container">
+  <div  *ngFor="let bar of barList ">
+  <progressbar [animate]="true" [value]="bar.value" [type]="bar.type"><span>{{bar.value}}%</span></progressbar>
+</div>
+<div class="options">
+  {{selectedProgress}}
+  <div>
+    <select class="form-control" [(ngModel)]="selectedProgressIndex" >
+      <option [ngValue]="i"  *ngFor="let bar of response.bars; let i = index">Progress{{i+1}}</option>
+    </select>
+  </div>
+  <div class="opt-buttons" *ngFor="let btn of response.buttons ">
+    <button  type="button" class="btn btn-sm btn-default" (click)="generateNewProgressValues(btn)">{{btn}}</button>
+
+  </div>
+</div>
+</div>
