@@ -40,6 +40,7 @@ export class Bar implements OnInit, OnDestroy {
 
   public percent:number = 0;
   public transition:string;
+  public max:number;
 
   private _value:number;
 

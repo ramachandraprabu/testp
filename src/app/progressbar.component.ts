@@ -9,7 +9,6 @@ import {Bar} from './bar.component';
 
 @Component({
     selector: 'progressbar, [progressbar]',
-   // directives: [Progress, Bar],
     template: `
     <div progress [animate]="animate" [max]="max">
       <bar [type]="type" [value]="value">
@@ -19,8 +18,8 @@ import {Bar} from './bar.component';
   `
 })
 export class Progressbar {
-    @Input() private animate:boolean;
-    @Input() private max:number;
-    @Input() private type:string;
-    @Input() private value:number;
+    @Input() public animate:boolean;
+    @Input() public max:number;
+    @Input() public type:string;
+    @Input() public value:number;
 }

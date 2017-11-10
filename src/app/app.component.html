@@ -4,7 +4,6 @@
   <progressbar [animate]="true" [value]="bar.value" [type]="bar.type"><span>{{bar.value}}%</span></progressbar>
 </div>
 <div class="options">
-  {{selectedProgress}}
   <div>
     <select class="form-control" [(ngModel)]="selectedProgressIndex" >
       <option [ngValue]="i"  *ngFor="let bar of response.bars; let i = index">Progress{{i+1}}</option>
