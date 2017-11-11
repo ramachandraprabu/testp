@@ -1,6 +1,6 @@
 import {Component, Input, NgModule} from '@angular/core';
 
-import {Progress} from './progress.directive';
+import {Progress} from '../directive/progress.directive';
 import {Bar} from './bar.component';
 @NgModule({
     declarations: [ Progress, Bar ]

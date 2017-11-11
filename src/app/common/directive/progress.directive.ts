@@ -1,5 +1,5 @@
 import {Directive, OnInit, Input, HostBinding} from '@angular/core';
-import {Bar} from './bar.component';
+import {Bar} from '../component/bar.component';
 
 const progressConfig = {
   animate: true,

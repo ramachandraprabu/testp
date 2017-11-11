@@ -1,7 +1,7 @@
 import {NgModule, Component, OnInit, OnDestroy, Input, Host} from '@angular/core';
 import {NgClass, NgStyle} from '@angular/common';
 
-import {Progress} from './progress.directive';
+import {Progress} from '../directive/progress.directive';
 
 @NgModule({
     declarations: [ NgClass, NgStyle ]
