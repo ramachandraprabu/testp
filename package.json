@@ -9,6 +9,7 @@
     "build:prod": "ng build --prod --env=prod --aot=false",
     "build:prod:aot": "ng build --prod --env=prod --aot=true",
     "test": "ng test",
+    "test:coverage": "ng test --code-coverage",
     "lint": "ng lint",
     "sass-lint":"sass-lint -c .sass-lint.yml '\"src/**/*.s+(a|c)ss\"' -v -q \"src/**/*.s+(a|c)ss\" --force",
     "e2e": "ng e2e"

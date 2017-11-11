@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  private generateNewProgressValues(val: number) {
+  public generateNewProgressValues(val: number) {
     val = this.calculatePercentage(val);
     this.barList[this.selectedProgressIndex].value = val + this.barList[this.selectedProgressIndex].value;
     let type: string;
@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
 
   }
 
-  private getType(bar: number) {
+  public getType(bar: number) {
     let _type: string = 'success';
     if (bar > 100) {
       _type = 'danger';
@@ -50,7 +50,7 @@ export class AppComponent implements OnInit {
     }
     return _type;
   }
-  private calculatePercentage(val: number) {
+  public calculatePercentage(val: number) {
      return Math.round(val * this.percentRatio);
 
   }
