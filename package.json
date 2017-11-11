@@ -6,6 +6,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --prod --env=prod --aot=false",
+    "build:prod:aot": "ng build --prod --env=prod --aot=true",
     "test": "ng test",
     "lint": "ng lint",
     "sass-lint":"sass-lint -c .sass-lint.yml '\"src/**/*.s+(a|c)ss\"' -v -q \"src/**/*.s+(a|c)ss\" --force",

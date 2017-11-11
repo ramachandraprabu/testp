@@ -11,22 +11,13 @@ export class AppComponent implements OnInit {
   public selectedProgressIndex: number = 0;
   public barList: any = [];
   public percentRatio: number;
-  public response: any = {
-    'buttons': [
-      10,
-      38,
-      -13,
-      -18
-    ],
-    'bars': [
-      62,
-      45,
-      62
-    ],
-    ' limit': 230
-  };
+  public response: any= {};
 
   constructor( private _progressBarDataService: AppComponentService) {
+
+  }
+
+  ngOnInit() {
     this._progressBarDataService.getProgressBarData().then((response) => {
       this.response = response;
       this.percentRatio = 100 / this.response.limit ;
@@ -37,20 +28,6 @@ export class AppComponent implements OnInit {
         this.barList.push({value: val, type: type });
       }
     });
-  }
-
-  ngOnInit() {
-    /*this._progressBarDataService.getProgressBarData().then((response) =>{
-      this.response = response;
-    })
-    console.log('init');
-    this.percentRatio = 100 / this.response.limit ;
-    console.log('precen', this.percentRatio, 'res',this.response.limit);
-    for ( let i = 0 ; i <this.response.bars.length; i++){
-      let val: number= this.calculatePercentage( this.response.bars[i]);
-      let type: string = this.getType(val);
-      this.barList.push({value: val,type: type });
-    }*/
   }
 
   private generateNewProgressValues(val: number) {
