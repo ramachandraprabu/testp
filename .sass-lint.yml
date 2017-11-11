@@ -1,0 +1,44 @@
+# Linter Options
+options:
+  verbose: true
+  # Don't merge default rules
+  merge-default-rules: false
+    # Set the formatter to 'html'
+  formatter: stylish
+  max-warnings: 50
+#File Options
+files:
+  include: 'src/**/*.s+(a|c)ss'
+  ignore:
+    - 'node_modules/*.*'
+rules:
+  extends-before-mixins: 2
+  extends-before-declarations: 2
+  placeholder-in-extend: 2
+  mixins-before-declarations:
+    - 2
+    -
+      exclude:
+        - breakpoint
+        - mq
+        - media
+  no-warn: 1
+  no-debug: 1
+  no-ids: 2
+  no-important: 2
+  indentation:
+    - 0
+    -
+      size: 4
+  property-sort-order:
+    - 1
+    -
+      order:
+        - display
+        - margin
+      ignore-custom-properties: true
+  variable-for-property:
+    - 2
+    -
+      properties:
+        - content

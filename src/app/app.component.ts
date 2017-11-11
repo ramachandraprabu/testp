@@ -7,46 +7,39 @@ import { AppComponentService } from './app.component.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
-  title = 'app';
-  public max:number = 200;
-  public currentValue:number = 10;
-  public type:string = "success";
-  public selectedProgressIndex: number =0;
-
-  public barList: any =[];
-
+export class AppComponent implements OnInit {
+  public selectedProgressIndex: number = 0;
+  public barList: any = [];
   public percentRatio: number;
-
   public response: any = {
-    "buttons": [
+    'buttons': [
       10,
       38,
       -13,
       -18
     ],
-    "bars": [
+    'bars': [
       62,
       45,
       62
     ],
-    "limit": 230
-  }
+    ' limit': 230
+  };
 
-  constructor( private _progressBarDataService:AppComponentService) {
-    this._progressBarDataService.getProgressBarData().then((response) =>{
+  constructor( private _progressBarDataService: AppComponentService) {
+    this._progressBarDataService.getProgressBarData().then((response) => {
       this.response = response;
       this.percentRatio = 100 / this.response.limit ;
-      console.log('precen', this.percentRatio, 'res',this.response.limit);
-      for ( let i = 0 ; i <this.response.bars.length; i++){
-        let val: number= this.calculatePercentage( this.response.bars[i]);
+      console.log('precen', this.percentRatio, 'res', this.response.limit);
+      for ( let i = 0 ; i < this.response.bars.length; i++ ) {
+        let val: number = this.calculatePercentage( this.response.bars[i]);
         let type: string = this.getType(val);
-        this.barList.push({value: val,type: type });
+        this.barList.push({value: val, type: type });
       }
     });
   }
 
-  ngOnInit(){
+  ngOnInit() {
     /*this._progressBarDataService.getProgressBarData().then((response) =>{
       this.response = response;
     })
@@ -59,21 +52,19 @@ export class AppComponent implements OnInit{
       this.barList.push({value: val,type: type });
     }*/
   }
-  onBarChange(index : number){
-    console.log('index', index);
-  }
+
   private generateNewProgressValues(val: number) {
     val = this.calculatePercentage(val);
-    this.barList[this.selectedProgressIndex].value = val+  this.barList[this.selectedProgressIndex].value;
-    let type:string;
-    if ( this.barList[this.selectedProgressIndex].value < 0){
+    this.barList[this.selectedProgressIndex].value = val + this.barList[this.selectedProgressIndex].value;
+    let type: string;
+    if ( this.barList[this.selectedProgressIndex].value < 0) {
       this.barList[this.selectedProgressIndex].value = 0;
     }
     this.barList[this.selectedProgressIndex].type = this.getType(this.barList[this.selectedProgressIndex].value);
 
-  };
+  }
 
-  private getType(bar: number){
+  private getType(bar: number) {
     let _type: string = 'success';
     if (bar > 100) {
       _type = 'danger';
@@ -82,8 +73,8 @@ export class AppComponent implements OnInit{
     }
     return _type;
   }
-  private calculatePercentage(val: number){
-     return Math.round(val* this.percentRatio);
+  private calculatePercentage(val: number) {
+     return Math.round(val * this.percentRatio);
 
   }
 

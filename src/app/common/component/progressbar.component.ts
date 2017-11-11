@@ -10,15 +10,15 @@ import {Bar} from './bar.component';
     selector: 'progressbar, [progressbar]',
     template: `
     <div progress [animate]="animate" [max]="max">
-      <bar [type]="type" [value]="value">
+      <cm-bar [type]="type" [value]="value">
           <ng-content></ng-content>
-      </bar>
+      </cm-bar>
     </div>
   `
 })
 export class Progressbar {
-    @Input() public animate:boolean;
-    @Input() public max:number;
-    @Input() public type:string;
-    @Input() public value:number;
+    @Input() public animate: boolean;
+    @Input() public max: number;
+    @Input() public type: string;
+    @Input() public value: number;
 }

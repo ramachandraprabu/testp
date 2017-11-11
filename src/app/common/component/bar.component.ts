@@ -8,7 +8,7 @@ import {Progress} from '../directive/progress.directive';
 })
 
 @Component({
-  selector: 'bar, [bar]',
+  selector: 'cm-bar, [cm-bar]',
   template: `
   <div class="progress-bar"
     style="min-width: 0;"
@@ -23,13 +23,13 @@ import {Progress} from '../directive/progress.directive';
 `
 })
 export class Bar implements OnInit, OnDestroy {
-  @Input() public type:string;
+  @Input() public type: string;
 
-  @Input() public get value():number {
+  @Input() public get value(): number {
     return this._value;
   }
 
-  public set value(v:number) {
+  public set value(v: number) {
     if (!v && v !== 0) {
       return;
     }
@@ -37,13 +37,13 @@ export class Bar implements OnInit, OnDestroy {
     this.recalculatePercentage();
   }
 
-  public percent:number = 0;
-  public transition:string;
-  public max:number = 0;
+  public percent: number = 0;
+  public transition: string;
+  public max: number = 0;
 
-  private _value:number;
+  private _value: number;
 
-  constructor(@Host() public progress:Progress) {
+  constructor(@Host() public progress: Progress) {
   }
 
   ngOnInit() {
