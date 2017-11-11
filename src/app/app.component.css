@@ -1,5 +1,6 @@
-.opt-buttons {
-    background-color: antiquewhite;
-    display: flex;
-    flex-direction: column;
+progressbar span {
+  color: black;
+}
+.container {
+  margin-top: 100px;
 }

@@ -32,12 +32,8 @@ export class AppComponent {
     "limit": 230
   }
 
-  public stackedValues:any[] = [];
-
   constructor() {
-    //this.generateNewProgressValues();
-   // this.currentValue = 20;
-   // this.generateStackedValues();
+
   }
 
   ngOnInit(){

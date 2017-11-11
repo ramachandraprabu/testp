@@ -9,7 +9,6 @@ import {Progress} from './progress.directive';
 
 @Component({
   selector: 'bar, [bar]',
- // directives: [NgClass, NgStyle],
   template: `
   <div class="progress-bar"
     style="min-width: 0;"
@@ -40,7 +39,7 @@ export class Bar implements OnInit, OnDestroy {
 
   public percent:number = 0;
   public transition:string;
-  public max:number;
+  public max:number = 0;
 
   private _value:number;
 
