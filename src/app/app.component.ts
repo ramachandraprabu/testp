@@ -1,23 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AppComponentService } from './app.component.service';
 
 @Component({
   selector: 'app-root',
+  providers: [AppComponentService],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'app';
   public max:number = 200;
   public currentValue:number = 10;
   public type:string = "success";
-  selectedProgressIndex: number =0;
+  public selectedProgressIndex: number =0;
 
-  barList: any =[];
+  public barList: any =[];
 
-  percentRatio: number;
+  public percentRatio: number;
 
-  response: any = {
+  public response: any = {
     "buttons": [
       10,
       38,
@@ -32,11 +33,23 @@ export class AppComponent {
     "limit": 230
   }
 
-  constructor() {
-
+  constructor( private _progressBarDataService:AppComponentService) {
+    this._progressBarDataService.getProgressBarData().then((response) =>{
+      this.response = response;
+      this.percentRatio = 100 / this.response.limit ;
+      console.log('precen', this.percentRatio, 'res',this.response.limit);
+      for ( let i = 0 ; i <this.response.bars.length; i++){
+        let val: number= this.calculatePercentage( this.response.bars[i]);
+        let type: string = this.getType(val);
+        this.barList.push({value: val,type: type });
+      }
+    });
   }
 
   ngOnInit(){
+    /*this._progressBarDataService.getProgressBarData().then((response) =>{
+      this.response = response;
+    })
     console.log('init');
     this.percentRatio = 100 / this.response.limit ;
     console.log('precen', this.percentRatio, 'res',this.response.limit);
@@ -44,13 +57,12 @@ export class AppComponent {
       let val: number= this.calculatePercentage( this.response.bars[i]);
       let type: string = this.getType(val);
       this.barList.push({value: val,type: type });
-    }
+    }*/
   }
   onBarChange(index : number){
     console.log('index', index);
   }
   private generateNewProgressValues(val: number) {
-   // console.log('val', val);
     val = this.calculatePercentage(val);
     this.barList[this.selectedProgressIndex].value = val+  this.barList[this.selectedProgressIndex].value;
     let type:string;
@@ -61,7 +73,7 @@ export class AppComponent {
 
   };
 
-  getType(bar: number){
+  private getType(bar: number){
     let _type: string = 'success';
     if (bar > 100) {
       _type = 'danger';
@@ -70,7 +82,7 @@ export class AppComponent {
     }
     return _type;
   }
-  calculatePercentage(val: number){
+  private calculatePercentage(val: number){
      return Math.round(val* this.percentRatio);
 
   }

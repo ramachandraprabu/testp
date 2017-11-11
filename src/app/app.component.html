@@ -1,11 +1,8 @@
-
 <div class="container">
   <h1 class="text-center">Progress Bar</h1>
-  <div class="row">
-    <div *ngFor="let bar of barList ">
+    <div class="row" *ngFor="let bar of barList ">
       <progressbar [animate]="true" [value]="bar.value" [type]="bar.type"><span>{{bar.value}}%</span></progressbar>
     </div>
-  </div>
 <div class="options">
   <ul class="list-inline">
     <li class="list-inline-item">
