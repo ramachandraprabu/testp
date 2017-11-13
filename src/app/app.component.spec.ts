@@ -6,32 +6,47 @@ import {Http, HttpModule} from '@angular/http';
 import {Progress} from './common/directive/progress.directive';
 import {Bar} from './common/component/bar.component';
 import {Progressbar} from './common/component/progressbar.component';
-import {NO_ERRORS_SCHEMA} from "@angular/core";
-import {MockProgressBarDataService} from "./mockProgressBarDataService";
-
+import {NO_ERRORS_SCHEMA} from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+let mockService = {
+  data: {
+    'buttons': [
+      10,
+      38,
+      -13,
+      -13
+    ],
+    'bars': [
+      62,
+      45,
+      62
+    ],
+    'limit': 230
+  },
+ getProgressBarData : () => {
+  return Observable.of(this.data);
+  }
+};
 describe('AppComponent', () => {
   let comp: AppComponent;
   let fixure: ComponentFixture<AppComponent>;
   let appComponentService: AppComponentService;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports:[
+      imports: [
         FormsModule,
         HttpModule
       ],
       declarations: [
         AppComponent,
-        Progress,
         Bar,
+        Progress,
         Progressbar
       ],
       providers: [
         AppComponentService,
-        {
-          provide: Http
-        },
-        {
-          provide: AppComponentService, useClass: MockProgressBarDataService
+         {
+          provide: AppComponentService, useClass: mockService
         }
       ],
       schemas: [NO_ERRORS_SCHEMA]
@@ -39,12 +54,12 @@ describe('AppComponent', () => {
       .then(() => {
         fixure = TestBed.createComponent(AppComponent);
         comp = fixure.componentInstance;
+        fixure.detectChanges();
       });
   }));
 
-  it ('should able to initialize AppComponent', () =>{
+  it ('should able to initialize AppComponent', () => {
     expect (comp).toBeDefined();
-   // expect (comp.appDataService).toBeDefined();
   });
 
   it ('should able to do ngOInit', fakeAsync(() => {
@@ -53,11 +68,12 @@ describe('AppComponent', () => {
     expect(comp.ngOnInit).toHaveBeenCalled();
   }));
 
-  /*it ('should able to excute generateNewProgressValues for button click', () => {
+  it ('should able to excute generateNewProgressValues for button click', () => {
     const val: number = 0;
+    comp.ngOnInit();
     comp.generateNewProgressValues(val);
     expect(true).toBe(true);
-  });*/
+  });
 
   it ('should able to excute getType', () => {
     let bar: number = 60;
