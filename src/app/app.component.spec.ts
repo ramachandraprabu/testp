@@ -7,7 +7,7 @@ import {Progress} from './common/directive/progress.directive';
 import {Bar} from './common/component/bar.component';
 import {Progressbar} from './common/component/progressbar.component';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 let mockService = {
   data: {
     'buttons': [
@@ -69,8 +69,10 @@ describe('AppComponent', () => {
   }));
 
   it ('should able to excute generateNewProgressValues for button click', () => {
-    const val: number = 0;
+    let val: number = 0;
     comp.ngOnInit();
+    comp.generateNewProgressValues(val);
+    val = -150;
     comp.generateNewProgressValues(val);
     expect(true).toBe(true);
   });
